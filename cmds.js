@@ -88,6 +88,7 @@ exports.testCmd = (rl,id) =>{
 
 exports.playCmd = rl =>{
      let score = 0;
+     var i;
      //array con todos los ids
      let toBeResolved =[];
      let num_preg = model.count();
@@ -96,9 +97,9 @@ exports.playCmd = rl =>{
      }
      const playOne = () =>{
      if(toBeResolved.length === 0){
-      log(`No hay nada más que preguntar.`);
-      log(`Fin del examen. Aciertos: `);
-      biglog(`${score}`, 'magenta');
+      log(` No hay más preguntas`);
+      log(` Examen finalizado con : ${score} puntos`);
+      biglog(score, 'magenta');
       rl.prompt();
       } else{
       // Elegir una pregunta aleatoria
@@ -108,19 +109,19 @@ exports.playCmd = rl =>{
       let quiz = model.getByIndex(toBeResolved[id]);
       toBeResolved.splice(id,1);
       const pregunta = quiz.question + "? ";
-      rl.question(colorize(pregunta,'red'), respuesta =>{
+      rl.question(colorize(quiz.question + '?','red'), respuesta =>{
                   if(respuesta.toLowerCase().trim() === quiz.answer){
                     // CORRECTO, CONTINUA
-                    score =score+1;
+                    score ++;
                     
-                    log(`CORRECTO - Lleva  ${score}  aciertos.`);
+                    log(` CORRECTO - Lleva  ${score}  aciertos`);
                     // HACER UNA NUEVA PREGUNTA
                     playOne();
 
                   }
                   else{
                     //INCORRECTO, FINAL
-                    log("INCORRECTO.");
+                    biglog('INCORRECTA!', 'red');
                     log("Fin del examen. Aciertos:");
                     biglog(`${score}`, 'magenta');
                     rl.prompt();
