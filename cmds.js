@@ -113,7 +113,8 @@ exports.playCmd = rl =>{
                     // CORRECTO, CONTINUA
                     score ++;
                     
-                    log(` correct - Lleva  ${score}  aciertos`);
+                    log(` correct `);
+                    log(`Lleva  ${score}  aciertos`);
                     // HACER UNA NUEVA PREGUNTA
                     playOne();
 
@@ -121,7 +122,8 @@ exports.playCmd = rl =>{
                   else{
                     //INCORRECTO, FINAL
                     log("incorrect");
-                    log("Fin del examen. Aciertos:");
+                    log("Fin ");
+                    log ("Aciertos: ");
                     biglog(`${score}`, 'magenta');
                     rl.prompt();
 
