@@ -96,6 +96,7 @@ exports.playCmd = rl =>{
      }
      const playOne = () =>{
      if(toBeResolved.length === 0){
+      log("Fin");
       log(` No hay más preguntas`);
       log(` Examen finalizado con : ${score} puntos`);
       biglog(score, 'magenta');
