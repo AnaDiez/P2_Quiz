@@ -65,15 +65,14 @@ exports.testCmd = (rl,id) =>{
           rl.question(colorize(pregunta,'red'), respuesta =>{
             if(respuesta.toLowerCase().trim() === quiz.answer){
               // CORRECTO
-              log("Su respuesta es: ");
-              biglog("Correcta", 'green');
+              log("correct ");
+              
               rl.prompt();
               
             }
             else{
               //INCORRECTO
-              log("Su respuesta es: ");
-              biglog("Incorrecta", 'red')
+              log("incorrect ");
               rl.prompt();
               
             }
@@ -114,14 +113,14 @@ exports.playCmd = rl =>{
                     // CORRECTO, CONTINUA
                     score ++;
                     
-                    log(` CORRECTO - Lleva  ${score}  aciertos`);
+                    log(` correct - Lleva  ${score}  aciertos`);
                     // HACER UNA NUEVA PREGUNTA
                     playOne();
 
                   }
                   else{
                     //INCORRECTO, FINAL
-                    biglog('INCORRECTA!', 'red');
+                    log("incorrect");
                     log("Fin del examen. Aciertos:");
                     biglog(`${score}`, 'magenta');
                     rl.prompt();
