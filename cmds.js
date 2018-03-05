@@ -1,7 +1,5 @@
 const model = require('./model');
-
-
-
+const process = require('process');
 const {log, biglog, errorlog, colorize} = require('./out');
 
 exports.helpCmp = rl => {
@@ -61,21 +59,17 @@ exports.testCmd = (rl,id) =>{
      }else{
         try{
           const quiz = model.getByIndex(id);
-          const pregunta = quiz.question + "? ";
-          rl.question(colorize(pregunta,'red'), respuesta =>{
-            if(respuesta.toLowerCase().trim() === quiz.answer){
+          rl.question(colorize(`${quiz.question}?: `,'red'), respuesta =>{
+            respuesta = respuesta.toLowerCase().trim();
+            if(respuesta === quiz.answer.toLowerCase().trim()){
               // CORRECTO
-              log("correct ");
-              
-              rl.prompt();
-              
+              log("correct ");              
             }
             else{
               //INCORRECTO
               log("incorrect ");
-              rl.prompt();
-              
             }
+            rl.prompt();
           });
           
           } catch(error){
@@ -109,27 +103,23 @@ exports.playCmd = rl =>{
       // Hacer la pregunta
       let quiz = model.getByIndex(toBeResolved[id]);
       toBeResolved.splice(id,1);
-      const pregunta = quiz.question + "? ";
-      rl.question(colorize(quiz.question + '?','red'), respuesta =>{
-                  if(respuesta.toLowerCase().trim() === quiz.answer){
-                    // CORRECTO, CONTINUA
-                    score ++;
-                    
-                    log(` correct `);
-                    log(`Lleva  ${score}  aciertos`);
-                    // HACER UNA NUEVA PREGUNTA
-                    playOne();
-
-                  }
-                  else{
+      rl.question(colorize(`${quiz.question}?: `,'red'), respuesta =>{
+      respuesta = respuesta.toLowerCase().trim();  
+          if(respuesta=== quiz.answer.toLowerCase().trim()){
+               // CORRECTO, CONTINUA
+               score ++;                    
+               log(` correct `);
+               log(`Lleva  ${score}  aciertos`);
+               // HACER UNA NUEVA PREGUNTA
+               playOne();
+              }else{
                     //INCORRECTO, FINAL
                     log("incorrect");
                     log("Fin ");
                     log ("Aciertos: ");
                     biglog(`${score}`, 'magenta');
-                    rl.prompt();
-
                   }
+                  rl.prompt();
                 });
       }
     }

@@ -6,22 +6,22 @@ const DB_FILENAME = "quizzes.json";
 
 // Variable con todas las preguntas.
 let quizzes = [
-  {
-  	question: "Capital de España",
-  	answer:"Madrid"
-  },
-  {
-  	question: "8+2",
-  	answer:"10"
-  },
-  {
-  	question: "Autor Quijote",
-  	answer:"Cervantes"
-  },
-  {
-  	question: "Simbolo  químico del agua",
-  	answer:"H20"
-  }
+    {
+        question: "Capital de Italia",
+        answer: "Roma"
+    },
+    {
+        question: "Capital de Francia",
+        answer: "París"
+    },
+    {
+        question: "Capital de España",
+        answer: "Madrid"
+    },
+    {
+        question: "Capital de Portugal",
+        answer: "Lisboa"
+    }
 ];
 
 // Método: cargar las preguntas en el fichero al arrancar el programa
